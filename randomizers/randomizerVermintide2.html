@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="UTF-8">
+    <style>
+	  html {background-color: black;}
+	  html {color: white;}
+	  a:link {color: green;}
+	  a:visited {color: green;}
+	  a:hover {color: hotpink;}
+	  a:active {color: blue;}
+	</style>
+  
+    <script type="text/javascript">
+
+	const hero = [0, 1, 2, 3, 4];
+	var heroRand = hero[Math.floor(Math.random() * hero.length)];
+	 
+	//empire arrays
+	const meleeEmpireMerc = ["Greatsword", "Halberd", "Sword", "Executioner Sword", "Great Hammer", "Sword and Shield", "Mace", "Mace and Shield", "Mace and Sword", "Tuskgor Spear", "Bretonnian Longsword", "Spear and Shield"];
+	const meleeEmpireHunts = ["Greatsword", "Halberd", "Sword", "Executioner Sword", "Great Hammer", "Sword and Shield", "Mace", "Mace and Shield", "Mace and Sword", "Tuskgor Spear", "Bretonnian Longsword", "Spear and Shield"];
+	const meleeEmpireFoot = ["Greatsword", "Halberd", "Sword", "Executioner Sword", "Great Hammer", "Sword and Shield", "Mace", "Mace and Shield", "Mace and Sword", "Bretonnian Longsword", "Spear and Shield"];
+	const meleeEmpireGrail = ["Greatsword", "Sword", "Executioner Sword", "Great Hammer", "Sword and Shield", "Mace", "Mace and Shield", "Mace and Sword", "Bretonnian Longsword", "Bretonnian Sword and Shield"];
+	
+	const rangedEmpireMerc = ["Blunderbuss", "Handgun", "Repeater Handgun"];
+	const rangedEmpireHunts = ["Blunderbuss", "Handgun", "Longbow", "Repeater Handgun"];
+	const rangedEmpireFoot = ["Blunderbuss", "Handgun", "Repeater Handgun"];
+	
+	const careerEmpire = ["Mercenary", "Huntsman", "Foot Knight", "Grail Knight"];
+	
+	
+	//dwarf arrays
+	const meleeDwarfVeteran = ["Great Hammer", "Great Axe", "Axe", "Hammer", "War Pick", "Axe and Shield", "Hammer and Shield", "Dual Hammers", "Cog Hammer"];
+	const meleeDwarfIron = ["Great Hammer", "Great Axe", "Axe", "Hammer", "War Pick", "Axe and Shield", "Hammer and Shield", "Dual Hammers", "Cog Hammer"];
+	const meleeDwarfSlayer = ["Great Hammer", "Great Axe", "Axe", "Hammer", "War Pick", "Dual Axes", "Dual Hammers", "Cog Hammer"];
+	const meleeDwarfOutcast = ["Great Hammer", "Great Axe", "Axe", "Hammer", "War Pick", "Axe and Shield", "Hammer and Shield", "Dual Hammers", "Cog Hammer"];
+	
+	const rangedDwarfVeteran = ["Crossbow", "Handgun", "Grudge-Raker", "Throwing Axes", "Masterwork Pistol"];
+	const rangedDwarfIron = ["Crossbow", "Handgun", "Drakefire Pistols", "Drakegun", "Grudge-Raker", "Masterwork Pistol", "Trollhammer Torpedo"];
+	const rangedDwardSlayer = ["Great Hammer", "Great Axe", "Axe", "Hammer", "War Pick", "Dual Axes", "Dual Hammers", "Cog Hammer", "Throwing Axes"];
+	const rangedDwarfOutcast = ["Handgun", "Drakefire Pistols", "Drakegun", "Grudge-Raker", "Masterwork Pistol", "Trollhammer Torpedo"];
+	
+	const careerDwarf = ["Ranger Veteran", "Ironbreaker", "Slayer", "Outcast Engineer"];
+	
+	
+	//watcher arrays
+	const meleeWatcherStalker = ["Sword", "Dual Daggers", "Dual Swords", "Sword and Dagger", "Glaive", "Greatsword", "Elven Spear", "Elven Axe"];
+	const meleeWatcherMaiden = ["Sword", "Dual Daggers", "Dual Swords", "Sword and Dagger", "Glaive", "Greatsword", "Elven Spear", "Elven Axe", "Spear and Shield"];
+	const meleeWatcherShade = ["Sword", "Dual Daggers", "Dual Swords", "Sword and Dagger", "Glaive", "Greatsword", "Elven Spear", "Elven Axe"];
+	const meleeWatcherThorn = ["Sword", "Dual Daggers", "Dual Swords", "Sword and Dagger", "Glaive", "Greatsword", "Elven Spear", "Elven Axe"];
+	
+	const rangedWatcherStalker = ["Swiftbow", "Longbow", "Hagbane Shortbow", "Moonfire Bow", "Briar Javelin"];
+	const rangedWatcherMaiden = ["Swiftbow", "Longbow", "Hagbane Shortbow", "Moonfire Bow", "Briar Javelin"];
+	const rangedWatcherShade = ["Swiftbow", "Longbow", "Hagbane Shortbow", "Volley Crossbow", "Moonfire Bow", "Briar Javelin"];
+	const rangedWatcherThorn = ["Swiftbow", "Longbow", "Hagbane Shortbow", "Moonfire Bow", "Briar Javelin", "Deepwood Staff"];
+	
+	const careerWatcher = ["Waystalker", "Handmaiden", "Shade", "Sister of the Thorn"];
+	
+	
+	//hunter arrays
+	const meleeHunterCaptain = ["Rapier", "Falchion", "Axe", "Greatsword", "Flail", "Axe and Falchion", "Bill Hook"];
+	const meleeHunterBounty = ["Rapier", "Falchion", "Axe", "Greatsword", "Flail", "Axe and Falchion", "Bill Hook"];
+	const meleeHunterZealot = ["Rapier", "Falchion", "Axe", "Greatsword", "Flail", "Axe and Falchion", "Bill Hook", "Holy Great Hammer", "Paired Skull-Splitters", "Skull-Splitter Hammer"];
+	const meleeHunterPriest = ["Flail and Shield", "Holy Great Hammer", "Paired Skull-Splitters", "Skull-Splitter and Blessed Tome", "Skull-Splitter and Shield", "Skull-Splitter Hammer"];
+	
+	const rangedHunterCaptain = ["Brace of Pistols", "Volley Crossbow", "Repeater Pistol", "Crossbow", "Griffonfoot Pistols"];
+	const rangedHunterBounty = ["Brace of Pistols", "Volley Crossbow", "Repeater Pistol", "Crossbow", "Griffonfoot Pistols"];
+	const rangedHunterZealot = ["Brace of Pistols", "Volley Crossbow", "Repeater Pistol", "Crossbow", "Griffonfoot Pistols"];
+	
+	const careerHunter = ["Witch Hunter Captain", "Bounty Hunter", "Zealot", "Warrior Priest of Sigmar"];
+	
+	//wizard arrays
+	const meleeWizard = ["Sword", "Mace", "Fire Sword", "Dagger", "Crowbill", "Flaming Flail"];
+	const rangedWizard = ["Fireball Staff", "Flamestorm Staff", "Bolt Staff", "Beam Staff", "Conflagration Staff", "Coruscation Staff"];
+	const careerWizard = ["Battle Wizard", "Pyromancer", "Unchained"];
+	
+	
+	//gamemodes
+	const gamemode = ["Campaign", "Weaves", "Expeditions", "Weekly Event", "Deeds"];
+	
+	//maps
+	const map = ["Righteous Stand", "Convocation of Decay", "Hunger in the Dark", "Halescourge", "Athel Yenlui", "The Screaming Bell", "Fort Brachsenbrücke", "Into the Nest", "Against the Grain", "Empire in Flames", "Festering Ground", "The War Camp", "The Skittergate", "Old Haunts", "Blood in the Darkness", "The Enchanter's Lair", "The Pit", "The Blightreaper", "The Horn of Magnus", "Garden of Morr", "Engines of War", "Fortunes of War", "Dark Omens"];
+	
+	//difficulty
+	const difficulty = ["Recruit", "Veteran", "Champion", "Legend", "Cataclysm"];
+	
+	//0 = Empire Soldier
+	//1 = Dwarf Ranger
+	//2 = Waywatcher
+	//3 = Witch Hunter
+	//4 = Bright Wizard
+	
+	
+	/*weapons that certain careers can't use
+	Empire Solider
+	Mercenary: Bretonnian Sword and Shield, Longbow
+	Huntsman: Bretonnian Sword and Shield
+	Footknight: Bretonnian Sword and Shield, Tuskgor Spear, Longbow
+	Grail Knight: Halberd, Tuskgor Spear, Spear and Shield, All ranged weapons
+	
+	Dwarf Ranger
+	Ranger Veteran: Dual Axes, Drakefire Pistols, Drakegun, Trollhammer Torpedo
+	Ironbreaker: Dual Axes, Throwing Axes
+	Slayer: Axe and Shield, Hammer and Shield, All ranged weapons (expect Throwing Axes)
+	Outcast Engineer: Dual Axes, Crossbow, Throwing Axes
+	
+	Waywatcher
+	Waystalker: Spear and Shield, Volley Crossbow, Deepwood Staff
+	Handmaiden: Volley Crossbow, Deepwood Staff
+	Shade: Spear and Shield, Deepwood Staff
+	Sister of the Thorn: Spear and Shield, Volley Crossbow
+	
+	Witch Hunter
+	Witch Hunter Captain: Flail and Shield, Holy Great Hammer, Paired Skull-Splitters, Skull-Splitter and Blessed Tome, Skull-Splitter and Shield, Skull-Splitter Hammer
+	Bounty Hunter: Flail and Shield, Holy Great Hammer, Paired Skull-Splitters, Skull-Splitter and Blessed Tome, Skull-Splitter and Shield, Skull-Splitter Hammer
+	Zealot: Flail and Shield, Skull-Splitter and Blessed Tome, Skull-Splitter and Shield
+	Warrior Priest of Sigmar: Rapier, Falchion, Axe, Greatsword, Flail, Axe and Falchion, Bill Hook, All ranged weapons
+	*/
+	  
+	function randFromArray(arr)
+		{
+			let i = Math.floor(Math.random() * arr.length);
+			return arr[i];
+		}
+
+	function setElemText(id, text)
+		{
+			document.getElementById(id).innerHTML = text;
+		}
+
+	function writeRandom(id, arr)
+		{
+			setElemText(id, randFromArray(arr));
+		}  
+	 
+	function writeRandomEmpireCareer()
+		{
+			writeRandom("careerSwitch", careerEmpire);
+		}
+	 
+	function writeRandomEmpireMelee()
+		{
+			careerTest = document.getElementById("careerSwitch").innerHTML;
+			
+			if (careerTest == "Mercenary") 
+			{
+				writeRandom("meleeSwitch", meleeEmpireMerc);
+			}
+				
+			if (careerTest == "Huntsman")
+			{
+				writeRandom("meleeSwitch", meleeEmpireHunts);
+			}
+
+			if (careerTest == "Foot Knight")
+			{
+				writeRandom("meleeSwitch", meleeEmpireFoot);
+			}
+				
+			else
+			{
+				writeRandom("meleeSwitch", meleeEmpireGrail);
+			}
+		}
+			
+	function writeRandomEmpireRanged()
+		{												
+			careerTest = document.getElementById("careerSwitch").innerHTML;
+			
+			if (careerTest == "Mercenary") 
+			{
+				writeRandom("rangedSwitch", rangedEmpireMerc);
+			}
+				
+			if (careerTest == "Huntsman")
+			{
+				writeRandom("rangedSwitch", rangedEmpireHunts);
+			}
+					
+			if (careerTest == "Foot Knight")
+			{
+				writeRandom("rangedSwitch", rangedEmpireFoot);
+			}
+				
+			else
+			{
+				writeRandom("rangedSwitch", meleeEmpireGrail);
+			}
+		}	
+
+	function writeRandomDwarfCareer()
+		{
+			writeRandom("careerSwitch", careerDwarf);
+		}
+	 
+	function writeRandomDwarfMelee()
+		{
+			careerTest = document.getElementById("careerSwitch").innerHTML;
+			
+			if (careerTest == "Ranger Veteran") 
+			{
+				writeRandom("meleeSwitch", meleeDwarfVeteran);
+			}
+				
+			if (careerTest == "Ironbreaker")
+			{
+				writeRandom("meleeSwitch", meleeDwarfIron);
+			}
+					
+			if (careerTest == "Slayer")
+			{
+				writeRandom("meleeSwitch", meleeDwarfSlayer);
+			}
+				
+			else
+			{
+				writeRandom("meleeSwitch", meleeDwarfOutcast);
+			}
+		}
+		
+	function writeRandomDwarfRanged()
+		{
+			careerTest = document.getElementById("careerSwitch").innerHTML;
+			
+			if (careerTest == "Ranger Veteran") 
+			{
+				writeRandom("rangedSwitch", rangedDwarfVeteran);
+			}
+				
+			if (careerTest == "Ironbreaker")
+			{
+				writeRandom("rangedSwitch", rangedDwarfIron);
+			}
+					
+			if (careerTest == "Slayer")
+			{
+				writeRandom("rangedSwitch", rangedDwardSlayer);
+			}
+				
+			else
+			{
+				writeRandom("rangedSwitch", rangedDwarfOutcast);
+			}
+		}	
+
+	function writeRandomWatcherCareer()
+		{
+			writeRandom("careerSwitch", careerWatcher);
+		}
+	 
+	function writeRandomWatcherMelee()
+		{
+			careerTest = document.getElementById("careerSwitch").innerHTML;
+			
+			if (careerTest == "Waystalker") 
+			{
+				writeRandom("meleeSwitch", meleeWatcherStalker);
+			}
+				
+			if (careerTest == "Handmaiden")
+			{
+				writeRandom("meleeSwitch", meleeWatcherMaiden);
+			}
+					
+			if (careerTest == "Shade")
+			{
+				writeRandom("meleeSwitch", meleeWatcherShade);
+			}
+				
+			else
+			{
+				writeRandom("meleeSwitch", meleeWatcherThorn);
+			}
+		}
+		
+	function writeRandomWatcherRanged()
+		{
+			careerTest = document.getElementById("careerSwitch").innerHTML;
+			
+			if (careerTest == "Waystalker") 
+			{
+				writeRandom("rangedSwitch", rangedWatcherStalker);
+			}
+				
+			if (careerTest == "Handmaiden")
+			{
+				writeRandom("rangedSwitch", rangedWatcherMaiden);
+			}
+					
+			if (careerTest == "Shade")
+			{
+				writeRandom("rangedSwitch", rangedWatcherShade);
+			}
+				
+			else
+			{
+				writeRandom("rangedSwitch", rangedWatcherThorn);
+			}
+		}	
+		
+	function writeRandomHunterCareer()
+		{
+			writeRandom("careerSwitch", careerHunter);
+		}
+	 
+	function writeRandomHunterMelee()
+		{
+			careerTest = document.getElementById("careerSwitch").innerHTML;
+			
+			if (careerTest == "Witch Hunter Captain") 
+			{
+				writeRandom("meleeSwitch", meleeHunterCaptain);
+			}
+				
+			if (careerTest == "Bounty Hunter")
+			{
+				writeRandom("meleeSwitch", meleeHunterBounty);
+			}
+					
+			if (careerTest == "Zealot")
+			{
+				writeRandom("meleeSwitch", meleeHunterZealot);
+			}
+				
+			else
+			{
+				writeRandom("meleeSwitch", meleeHunterPriest);
+			}
+		}
+		
+	function writeRandomHunterRanged()
+		{
+			careerTest = document.getElementById("careerSwitch").innerHTML;
+			
+			if (careerTest == "Witch Hunter Captain") 
+			{
+				writeRandom("rangedSwitch", rangedHunterCaptain);
+			}
+				
+			if (careerTest == "Bounty Hunter")
+			{
+				writeRandom("rangedSwitch", rangedHunterBounty);
+			}
+					
+			if (careerTest == "Zealot")
+			{
+				writeRandom("rangedSwitch", rangedHunterZealot);
+			}
+				
+			else
+			{
+				writeRandom("rangedSwitch", meleeHunterPriest);
+			}
+		}
+
+	function writeRandomWizardCareer()
+		{
+			writeRandom("careerSwitch", careerWizard);
+		}
+	 
+	function writeRandomWizardMelee()
+		{
+			writeRandom("meleeSwitch", meleeWizard);
+		}
+		
+	function writeRandomWizardRanged()
+		{
+			writeRandom("rangedSwitch", rangedWizard);
+		}
+	
+	function findHeroCareer()
+		{
+			switch(heroRand)
+			{
+				case 0:			
+					writeRandomEmpireCareer();		
+				break;
+				
+				case 1:
+					writeRandomDwarfCareer();	
+				break;
+				
+				case 2:
+					writeRandomWatcherCareer();
+				break;
+			
+				case 3:	
+					writeRandomHunterCareer();
+				break;
+					
+				case 4:	
+					writeRandomWizardCareer();
+				break;		  	  	
+			}	
+		}
+		
+	function findHeroMelee()
+		{
+		switch(heroRand)
+		{
+			case 0:			
+				writeRandomEmpireMelee();		
+			break;
+				
+			case 1:
+				writeRandomDwarfMelee();	
+			break;
+		
+			case 2:
+				writeRandomWatcherMelee();
+			break;
+			
+			case 3:	
+				writeRandomHunterMelee();
+			break;
+					
+			case 4:	
+				writeRandomWizardMelee();
+			break;		  	  	
+		}
+			
+	}
+		
+	function findHeroRanged()
+		{
+			switch(heroRand)
+			{
+				case 0:			
+					writeRandomEmpireRanged();		
+				break;
+				
+				case 1:
+					writeRandomDwarfRanged();	
+				break;
+				
+				case 2:
+					writeRandomWatcherRanged();
+				break;
+			
+				case 3:	
+					writeRandomHunterRanged();
+				break;
+					
+				case 4:	
+					writeRandomWizardRanged();
+				break;		  	  	
+			}
+		}
+	
+	function writeRandomDifficulty()
+		{
+			writeRandom("difficultySwitch", difficulty);
+		}
+	
+	function writeRandomGamemode()
+		{
+			writeRandom("gamemodeSwitch", gamemode);
+			
+			gamemodeTest = document.getElementById("gamemodeSwitch").innerHTML
+			
+			if (gamemodeTest == "Campaign")
+				{
+					writeRandomMap();
+				}
+		}
+		
+	function writeRandomMap()
+		{
+			writeRandom("mapSwitch", map);
+		}
+		
+	function writeRandomTalents()
+		{
+			//TODO Loops
+			var talents = [];
+			for (let k = 0; k < 6; k++) 
+			{
+				talents.push(Math.floor(Math.random() * 3) + 1);
+			} 
+			document.getElementById("talentsSwitch").innerHTML = talents;
+		}
+		
+	function rerandomAll()
+		{	
+			//redo the random
+			heroRand = hero[Math.floor(Math.random() * hero.length)];
+			
+			//set map to blank
+			document.getElementById("mapSwitch").innerHTML = "";
+			
+			//run other randoms
+			writeRandomGamemode();
+			writeRandomDifficulty();
+			writeRandomTalents();
+		
+			//check what hero and apply the correct arrays
+			switch(heroRand)
+			{
+			  case 0:
+				//write down the hero
+				document.getElementById("heroSwitch").innerHTML = "Empire Soldier";	
+				
+				//choose career
+				writeRandomEmpireCareer();
+				
+				//choose melee
+				writeRandomEmpireMelee();
+				
+				//choose ranged
+				writeRandomEmpireRanged();
+				
+				//if (careerRand = "Grail Knight")
+				//{
+				//	rangedRand = meleeEmpire[Math.floor(Math.random() * meleeEmpire.length)];
+				//}
+				
+				break;
+				
+			  case 1:
+				document.getElementById("heroSwitch").innerHTML = "Dwarf Ranger";
+				writeRandomDwarfCareer();
+				writeRandomDwarfMelee();
+				writeRandomDwarfRanged();
+				
+				break;
+				
+			  case 2:
+				document.getElementById("heroSwitch").innerHTML = "Waywatcher";	
+				writeRandomWatcherCareer();
+				writeRandomWatcherMelee();
+				writeRandomWatcherRanged();
+				
+				break;
+				
+			  case 3:	
+				document.getElementById("heroSwitch").innerHTML = "Witch Hunter";
+				writeRandomHunterCareer();
+				writeRandomHunterMelee();
+				writeRandomHunterRanged();
+				
+				break;
+				
+			  case 4:	
+				document.getElementById("heroSwitch").innerHTML = "Bright Wizard";
+				writeRandomWizardCareer();
+				writeRandomWizardMelee();
+				writeRandomWizardRanged();
+				
+				break;		  
+				
+			}
+			  
+		}	
+	</script>
+    <title>Vermintide 2 Randomizer</title>	
+  </head>
+  <body>
+    <h1>Vermintide 2 Randomizer</h1>
+	
+	<!-- random button -->
+    <input type="button" onclick="rerandomAll();" value="Randomize!" /></br>
+    
+	<h1>Hero: <span id="heroSwitch"></span></h1>
+	
+	<p><b><u>Career:</u> </b><span id="careerSwitch"></span></p>
+	<input type="button" onclick="findHeroCareer()" value="Re-roll Career">
+	
+	<p><b><u>Melee:</u> </b><span id="meleeSwitch"></span></p>
+	<input type="button" onclick="findHeroMelee()" value="Re-roll Melee">
+	
+	<p><b><u>Ranged:</u> </b><span id="rangedSwitch"></span></p>
+	<input type="button" onclick="findHeroRanged()" value="Re-roll Ranged">
+	
+	<p><b><u>Gamemode:</u> </b><span id="gamemodeSwitch"></span></p>
+	<input type="button" onclick="writeRandomGamemode()" value="Re-roll Gamemode">
+
+	<p><b><u>Map:</u> </b><span id="mapSwitch"></span></p>
+	<input type="button" onclick="writeRandomMap()" value="Re-roll Map">
+	
+	<p><b><u>Difficulty:</u> </b><span id="difficultySwitch"></span></p>
+	<input type="button" onclick="writeRandomDifficulty()" value="Re-roll Difficulty">
+	
+	</br>
+	</br>
+	<p><b><u>OPTIONAL: Talents:</u> </b><span id="talentsSwitch"></span></p>
+	<input type="button" onclick="writeRandomTalents()" value="Re-roll Talents">
+	
+  </body>
+</html>

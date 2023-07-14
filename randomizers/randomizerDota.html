@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+	  html {background-color: black;}
+	  html {color: white;}
+	  a:link {color: green;}
+	  a:visited {color: green;}
+	  a:hover {color: hotpink;}
+	  a:active {color: blue;}
+	</style>
+  
+    <script type="text/javascript">
+      //init arrays
+	  var hero = ["Abaddon", "Alchemist", "Ancient Apparition", "Anti-Mage", "Arc Warden", "Axe", "Bane", "Batrider", "Beastmaster", "Bloodseeker", "Bounty Hunter", "Brewmaster", "Bristleback", "Broodmother", "Centaur Warrunner", "Chaos Knight", "Chen", "Clinkz", "Clockwerk", "Crystal Maiden", "Dark Seer", "Dark Willow", "Dawnbreaker", "Dazzle", "Death Prophet", "Disruptor", "Doom", "Dragon Knight", "Drow Ranger", "Earth Spirit", "Earthshaker", "Elder Titan", "Ember Spirit", "Enchantress", "Enigma", "Faceless Void", "Grimstroke", "Gyrocopter", "Hoodwink", "Huskar", "Invoker", "Io", "Jakiro", "Juggernaut", "Keeper of the Light", "Kunkka", "Legion Commander", "Leshrac", "Lich", "Lifestealer", "Lina", "Lion", "Lone Druid", "Luna", "Lycan", "Magnus", "Marci", "Mars", "Medusa", "Meepo", "Mirana", "Monkey King", "Morphling", "Muerta", "Naga Siren", "Nature's Prophet", "Necrophos", "Night Stalker", "Nyx Assassin", "Ogre Magi", "Omniknight", "Oracle", "Outworld Devourer", "Pangolier", "Phantom Assassin", "Phantom Lancer", "Phoenix", "Primal Beast", "Puck", "Pudge", "Pugna", "Queen of Pain", "Razor", "Riki", "Rubick", "Sand King", "Shadow Demon", "Shadow Fiend", "Shadow Shaman", "Silencer", "Skywrath Mage", "Slardar", "Slark", "Snapfire", "Sniper", "Spectre", "Spirit Breaker", "Storm Spirit", "Sven", "Techies", "Templar Assassin", "Terrorblade", "Tidehunter", "Timbersaw", "Tinker", "Tiny", "Treant Protector", "Troll Warlord", "Tusk", "Underlord", "Undying", "Ursa", "Vengeful Spirit", "Venomancer", "Viper", "Visage", "Void Spirit", "Warlock", "Weaver", "Windranger", "Winter Wyvern", "Witch Doctor", "Wraith King", "Zeus"];
+	  var heroUnique = ["Abaddon", "Alchemist", "Ancient Apparition", "Anti-Mage", "Arc Warden", "Axe", "Bane", "Batrider", "Beastmaster", "Bloodseeker", "Bounty Hunter", "Brewmaster", "Bristleback", "Broodmother", "Centaur Warrunner", "Chaos Knight", "Chen", "Clinkz", "Clockwerk", "Crystal Maiden", "Dark Seer", "Dark Willow", "Dawnbreaker", "Dazzle", "Death Prophet", "Disruptor", "Doom", "Dragon Knight", "Drow Ranger", "Earth Spirit", "Earthshaker", "Elder Titan", "Ember Spirit", "Enchantress", "Enigma", "Faceless Void", "Grimstroke", "Gyrocopter", "Hoodwink", "Huskar", "Invoker", "Io", "Jakiro", "Juggernaut", "Keeper of the Light", "Kunkka", "Legion Commander", "Leshrac", "Lich", "Lifestealer", "Lina", "Lion", "Lone Druid", "Luna", "Lycan", "Magnus", "Marci", "Mars", "Medusa", "Meepo", "Mirana", "Monkey King", "Morphling", "Muerta", "Naga Siren", "Nature's Prophet", "Necrophos", "Night Stalker", "Nyx Assassin", "Ogre Magi", "Omniknight", "Oracle", "Outworld Devourer", "Pangolier", "Phantom Assassin", "Phantom Lancer", "Phoenix", "Primal Beast", "Puck", "Pudge", "Pugna", "Queen of Pain", "Razor", "Riki", "Rubick", "Sand King", "Shadow Demon", "Shadow Fiend", "Shadow Shaman", "Silencer", "Skywrath Mage", "Slardar", "Slark", "Snapfire", "Sniper", "Spectre", "Spirit Breaker", "Storm Spirit", "Sven", "Techies", "Templar Assassin", "Terrorblade", "Tidehunter", "Timbersaw", "Tinker", "Tiny", "Treant Protector", "Troll Warlord", "Tusk", "Underlord", "Undying", "Ursa", "Vengeful Spirit", "Venomancer", "Viper", "Visage", "Void Spirit", "Warlock", "Weaver", "Windranger", "Winter Wyvern", "Witch Doctor", "Wraith King", "Zeus"];
+	  var heroPosition = ["Carry", "Support"];
+	  var team = ["Dire", "Radiant"];
+
+	  
+	  //add function to re-roll the randomizer
+	  function teamDecide()
+	  {
+	    var teamRand = team[Math.floor(Math.random() * team.length)];
+		document.getElementById("teamSwitch").innerHTML = teamRand;	   
+	  }	  
+	  
+	  function rerandom()
+	  {
+	    var heroRand = hero[Math.floor(Math.random() * hero.length)];
+		document.getElementById("heroSwitch").innerHTML = heroRand;	   
+	  }	  
+	  
+	  function rerandomUnique()
+	  {
+	    var heroUniqueRand = heroUnique[Math.floor(Math.random() * heroUnique.length)];
+		document.getElementById("heroUniqueSwitch").innerHTML = heroUniqueRand;	
+			
+		heroUnique = heroUnique.filter(function(item) {
+		  return item !== heroUniqueRand
+		})
+	}
+	
+		function rerandomUniqueTeam()
+	  {
+	    var heroUniqueTeamRand1 = heroUnique[Math.floor(Math.random() * heroUnique.length)];
+		document.getElementById("heroUniqueTeamSwitch1").innerHTML = heroUniqueTeamRand1;	
+			
+		heroUnique = heroUnique.filter(function(item) {
+		  return item !== heroUniqueTeamRand1
+		})
+		 
+		var heroUniqueTeamRand2 = heroUnique[Math.floor(Math.random() * heroUnique.length)];
+		document.getElementById("heroUniqueTeamSwitch2").innerHTML = heroUniqueTeamRand2;	
+			
+		heroUnique = heroUnique.filter(function(item) {
+		  return item !== heroUniqueTeamRand2
+		})
+	  }
+    </script
+	
+    <meta charset="UTF-8">
+    <title>Dodka 2 Randomizer</title>
+	
+  </head>
+  <body>
+    <h1>Dota 2 Randomizer</h1>
+	
+	<!-- random button -->
+    <input type="button" onclick="rerandom()" value="Random Hero" /></br>
+    
+    <h1><span id="heroSwitch"><script>document.write(heroRand)</script></span></h1>
+	
+	<!-- button for heroes that you have played already -->
+	<input type="button" onclick="rerandomUnique()" value="Unique Random Hero" /></br>
+	
+	<h1><span id="heroUniqueSwitch"><script>document.write(heroUniqueRand)</script></span></h1></br>
+	
+	
+	<!-- button for heroes for team thing. includes a dire or radiant randomizer -->
+	<input type="button" onclick="rerandomUniqueTeam();teamDecide()" value="Duo Randomize" /></br>
+	<!-- <input type="button" onclick="teamDecide()" value="Dire or Radiant?" /></br> -->
+	
+	<h1>Team: <span id="teamSwitch"><script>document.write(teamRand)</script></span></h1>
+	<h1>Player 1 plays: <span id="heroUniqueTeamSwitch1"><script>document.write(heroUniqueTeamRand1)</script></span></h1>
+	<h1>Player 2 plays: <span id="heroUniqueTeamSwitch2"><script>document.write(heroUniqueTeamRand2)</script></span></h1>
+	
+  </body>
+</html>

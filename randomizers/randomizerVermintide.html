@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+	  html {background-color: black;}
+	  html {color: white;}
+	  a:link {color: green;}
+	  a:visited {color: green;}
+	  a:hover {color: hotpink;}
+	  a:active {color: blue;}
+	</style>
+  
+    <script type="text/javascript">
+      //init arrays	  
+	  var hero = [0, 1, 2, 3, 4];
+	 
+	  //melee arrays
+	  var meleeHunter = ["Axe", "Rapier", "Two-Handed Sword", "Falchion"];
+	  var meleeWatcher = ["Sword", "Dual Swords", "Sword and Dagger", "Dual Daggers", "Glaive"];
+	  var meleeDwarf = ["Hammer", "Axe", "Two-Handed Hammer", "Great Axe", "Axe and Shield", "Hammer and Shield", "Pick"];
+	  var meleeWizard = ["Sword", "Flaming Sword", "Mace", "Ceremonial Dagger"];
+	  var meleeEmpire = ["Mace", "Sword", "Two-Handed Hammer", "Two-Handed Sword", "Executioner Sword", "Mace and Shield", "Sword and Shield"];
+
+	  
+	  //ranged arrays
+	  var rangedHunter = ["Brace of Pistols", "Repeater Pistol", "Crossbow", "Volley Crossbow"];
+	  var rangedWatcher = ["Swift Bow", "Hagbane Swift Bow", "Longbow", "Trueflight Longbow"];
+	  var rangedDwarf = ["Grudge-raker", "Handgun", "Crossbow", "Drakefire Pistols"];
+	  var rangedWizard = ["Beam Staff", "Bolt Staff", "Fireball Staff", "Conflagration Staff"];
+	  var rangedEmpire = ["Blunderbuss", "Handgun", "Repeater Handgun"];
+	  	
+      var meleeRand = "";
+      var rangedRand = "";  
+	  
+	    
+	  //0 = Witch Hunter
+	  //1 = Waywatcher
+	  //2 = Dwarf Ranger
+	  //3 = Bright Wizard
+	  //4 = Empire Soldier
+	  
+	  
+	function rerandom()
+	{
+	  	var heroRand = hero[Math.floor(Math.random() * hero.length)];	
+		
+		//check what hero and apply the correct arrays
+		switch(heroRand)
+		{
+		  case 0:
+		    //write down the hero
+		    document.getElementById("heroSwitch").innerHTML = "Witch Hunter";
+
+			//choose melee
+		    meleeRand = meleeHunter[Math.floor(Math.random() * meleeHunter.length)];
+			
+			//choose ranged
+		    rangedRand = rangedHunter[Math.floor(Math.random() * rangedHunter.length)];
+			
+		    break;
+			
+	      case 1:
+		  	document.getElementById("heroSwitch").innerHTML = "Waywatcher";	
+		    meleeRand = meleeWatcher[Math.floor(Math.random() * meleeWatcher.length)];		
+		    rangedRand = rangedWatcher[Math.floor(Math.random() * rangedWatcher.length)];
+			
+		    break;
+			
+	      case 2:
+		  	document.getElementById("heroSwitch").innerHTML = "Dwarf Ranger";			
+			meleeRand = meleeDwarf[Math.floor(Math.random() * meleeDwarf.length)];	
+		    rangedRand = rangedDwarf[Math.floor(Math.random() * rangedDwarf.length)];
+			
+		    break;
+			
+		  case 3:
+		  	document.getElementById("heroSwitch").innerHTML = "Bright Wizard";	
+			meleeRand = meleeWizard[Math.floor(Math.random() * meleeWizard.length)];			
+		    rangedRand = rangedWizard[Math.floor(Math.random() * rangedWizard.length)];
+			
+		    break;
+			
+		  case 4:		  
+		  	document.getElementById("heroSwitch").innerHTML = "Empire Soldier";	
+			meleeRand = meleeEmpire[Math.floor(Math.random() * meleeEmpire.length)];		
+		    rangedRand = rangedEmpire[Math.floor(Math.random() * rangedEmpire.length)];
+			
+		    break;
+		}
+
+		document.getElementById("meleeSwitch").innerHTML = meleeRand;
+	    document.getElementById("rangedSwitch").innerHTML = rangedRand;
+		
+		//randomize trinkets
+		
+		var trinkets = ["Brigandine", "Bullet Resistant", "Gorget", "Iron Lung", "Group Treatment", "Hand of Shallya", "Healer's Touch", "Sister of Shallya", "Proxy", "Home Brewer", "Grenadier", "Explosive Ordnance", "Coagulation", "Curse Ward", "Deep Pockets", "Escape Artist", "Life Bond", "Morr's Crown", "Quick Foot", "Ranald's Blessing", "Triage", "Veteran Surgeon"];
+
+		for(i = 1; i < 4; i++)
+		{
+		  var trinketsRand = trinkets[Math.floor(Math.random() * trinkets.length)];
+		  
+		  trinkets = trinkets.filter(function(item) {
+		    return item !== trinketsRand
+		  })
+		  
+		    switch(i)
+		    {
+		      case 1:
+			  document.getElementById("trinket1").innerHTML = trinketsRand;
+			  break;
+			  
+			  case 2:
+			  document.getElementById("trinket2").innerHTML = trinketsRand;
+		      break;
+		  	
+			  case 3:
+			  document.getElementById("trinket3").innerHTML = trinketsRand;
+			  break;
+		    }		 
+        }		  
+	}
+    </script>
+	
+    <meta charset="UTF-8">
+    <title>Vermintide 1 Randomizer</title>
+	
+  </head>
+  <body>
+    <h1>Vermintide 1 Randomizer</h1>
+	
+	<!-- random button -->
+    <input type="button" onclick="rerandom()" value="Randomize!" />
+    
+	<h1>Hero: <span id="heroSwitch"><script>document.write(heroRand)</script></span></h1>
+
+	<p><b><u>Melee:</u> </b><span id="meleeSwitch"><script>document.write(meleeRand)</script></span></p>
+	<p><b><u>Ranged:</u> </b><span id="rangedSwitch"><script>document.write(rangedRand)</script></span></p>
+    <p><b><u>Trinket:</u> </b><span id="trinket1"><script>document.write(trinketsRand)</script></span></p>
+	<p><b><u>Trinket:</u> </b><span id="trinket2"><script>document.write(trinketsRand)</script></span></p>
+    <p><b><u>Trinket:</u> </b><span id="trinket3"><script>document.write(trinketsRand)</script></span></p>
+
+	
+  </body>
+</html>

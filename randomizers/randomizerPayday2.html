@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  	<meta charset="UTF-8">
+		<title>Payday 2 Randomizer</title>
+		<style>
+			html {
+				background-color: black;
+				color: white;
+			}
+			
+			a:link {
+				color: green;
+			}
+			
+			a:visited {
+				color: green;
+			}
+			
+			a:hover {
+				color: hotpink;
+			}
+			
+			a:active {
+				color: blue;
+			}
+
+			td, th {
+				width: 14em;
+				padding: 5px;
+				/* border: solid 1px red; */
+			}
+
+			td {
+				text-align: right;
+			}
+
+			td:nth-child(2) {
+				font-weight: bold;
+			}
+
+			td:nth-child(3) {
+				width: 19em;
+				text-align: left;
+			}
+		</style>
+
+		<script type="text/javascript">
+			//init arrays
+			const primaryWeapon = [
+			"AMCAR (Assault Rifle)",
+			"Commando 553 (Assault Rifle)",
+			"Eagle Heavy (Assault Rifle)",
+			"Union 5.56 (Assault Rifle)",
+			"AK (Assault Rifle)",
+			"CAR-4 (Assault Rifle)",
+			"UAR (Assault Rifle)",
+			"Ketchnov BYK-1 (Assault Rifle)",
+			"Cavity 9mm (Assault Rifle)",
+			"AK.762 (Assault Rifle)",
+			"JP36 (Assault Rifle)",
+			"AK17 (Assault Rifle)",
+			"Golden AK.762 (Assault Rifle)",
+			"Bootleg (Assault Rifle)",
+			"Queen's Wrath (Assault Rifle)",
+			"Galant (Assault Rifle)",
+			"M308 (Assault Rifle)",
+			"Clarion (Assault Rifle)",
+			"Lion's Roar (Assault Rifle)",
+			"Valkyria (Assault Rifle)",
+			"AK5 (Assault Rifle)",
+			"Gecko 7.62 (Assault Rifle)",
+			"Tempest-21 (Assault Rifle)",
+			"AMR-16 (Assault Rifle)",
+			"KS12 Urban (Assult Rifle)",
+			"Little Friend 7.62 (Assault Rifle)",
+			"Falcon (Assault Rifle)",
+			"Rodion 3B (Assault Rifle)",
+			"Gewehr 3 (Assault Rifle)",
+			
+			"Predator 12G (Shotgun)",
+			"Breaker 12G (Shotgun)",
+			"Reinfeld 880 (Shotgun)",
+			"Mosconi 12G Tactical (Shotgun)",
+			"VD-12 (Shotgun)",
+			"M1014 (Shotgun)",
+			"Raven (Shotgun)",
+			"IZHMA 12G (Shotgun)",
+			"Reinfeld 88 (Shotgun)",
+			"Deimos (Shotgun)",
+			"Mosconi 12G (Shotgun)",
+			"Joceline O/U 12G (Shotgun)",
+			"Steakout 12G (Shotgun)",
+			
+			"RPK (LMG)",
+			"KSP 58 (LMG)",
+			"M60 (LMG)",
+			"SG Versteckt 51D (LMG)",
+			"Campbell 74 (LMG)",
+			"KSP (LMG)",
+			"Akron HC (LMG)",
+			"Buzzsaw 42 (LMG)",
+			"Brenner 21 (LMG)",
+			
+			"Rattlesnake (Sniper)",
+			"R700 (Sniper)",
+			"Bernetti Rangehitter (Sniper)",
+			"Káng Arms X1 (Sniper)",
+			"Platypus 70 (Sniper)",
+			"Amaroq 900 (Sniper)",
+			"Lebensauger .308 (Sniper)",
+			"Desertfox (Sniper)",
+			"Contractor .308 (Sniper)",
+			"R93 (Sniper)",
+			"Repeater 1874 (Sniper)",
+			"Grom (Sniper)",
+			"Nagant (Sniper)",
+			"Thanatos .50 cal (Sniper)",
+			
+			"Chimano Compact (Akimbo Pistol)",
+			"Crosskill (Akimbo Pistol)",
+			"Bernetti 9 (Akimbo Pistol)",
+			"Deagle (Akimbo Pistol)",
+			"Chimano 88 (Akimbo Pistol)",
+			"Chimano Custom (Akimbo Pistol)",
+			"Signature .40 (Akimbo Pistol)",
+			"Gruber Kurz (Akimbo Pistol)",
+			"Interceptor 45 (Akimbo Pistol)",
+			"Contractor (Akimbo Pistol)",
+			"Bronco .44 (Akimbo Pistol)",
+			"White Streak (Akimbo Pistol)",
+			"Baby Deagle (Akimbo Pistol)",
+			"M13 9mm (Akimbo Pistol)",
+			"Broomstick (Akimbo Pistol)",
+			"Crosskill Chunky Compact (Akimbo Pistol)",
+			"Káng Arms Model 54 (Akimbo Pistol)",
+			"Gecko M2 (Akimbo Pistol)",
+			"Parabellum (Akimbo Pistol)",
+			"Castigo .44 (Akimbo Pistol)",
+			"Frenchman Model 87 (Akimbo Pistol)",
+			"Crosskill Guard (Akimbo Pistol)",
+			"LEO (Akimbo Pistol)",
+			"STRYK 18c (Akimbo Pistol)",
+			"Bernetti Auto (Akimbo Pistol)",
+			"Czech 92 (Akimbo Pistol)",
+			"Igor Automatik (Akimbo Pistol)",
+			"HOLT (Akimbo Pistol)",
+			"Kahn .357 (Akimbo Pistol)",
+			"Matever .357 (Akimbo Pistol)",
+			
+			"Krinkov (Akimbo SMG)",
+			"Swedish K (Akimbo SMG)",
+			"Compact-5 (Akimbo SMG)",
+			"SpecOps (Akimbo SMG)",
+			"Heather (Akimbo SMG)",
+			"CR 805B (Akimbo SMG)",
+			"Mark 10 (Akimbo SMG)",
+			"Jacket's Piece (Akimbo SMG)",
+			"Chicago Typewriter (Akimbo SMG)",
+			"Miyaka 10 Special (Akimbo SMG)", 
+			"Cobra (Akimbo SMG)",
+			"Micro Uzi (Akimbo SMG)",
+			"CMP (Akimbo SMG)",
+			"Para (Akimbo SMG)",
+			"Jackal (Akimbo SMG)",
+			"Signature (Akimbo SMG)",
+			"AK Gen 21 Tactical (Akimbo SMG)",
+			"MP40 (Akimbo SMG)",
+			"Blaster 9mm (Akimbo SMG)",
+			"Kobus 90 (Akimbo SMG)",
+			"Kross Vertex (Akimbo SMG)",
+			"Tatonka (Akimbo SMG)",
+			"Patchett L2A1 (Akimbo SMG)",
+			"Uzi (Akimbo SMG)",
+			
+			"Goliath 12G (Akimbo Shotgun)",
+			"VD-12 (Akimbo Shotgun)",
+			"Brothers Grimm 12G (Akimbo Shotgun)",
+			"Judge (Akimbo Shotgun)",
+			
+			"OVE9000 (Special)",
+			"Plainsrider Bow (Special)",
+			"Light Crossbow (Special)",
+			"Airbow (Special)",
+			"English Longbow (Special)",
+			"XL 5.56 Microgun (Special)",
+			"DECA Technologies Compound Bow (Special)",
+			"Vulcan Minigun (Special)",
+			"Heavy Crossbow (Special)",
+			"Piglet (Special)",
+			"Flamethrower Mk.1 (Special)",
+			"GL40 (Special)",
+			"Hailstorm Mk5 (Special)"
+			];
+				
+				
+			const secondaryWeapon = [
+			"Interceptor .45 (Pistol)",
+			"Chimano 88 (Pistol)",
+			"Gruber Kurz (Pistol)",
+			"Signature .40 (Pistol)",
+			"Crosskill (Pistol)",
+			"Bernetti 9 (Pistol)",
+			"Bronco .44 (Pistol)",
+			"Crosskill Chunky Compact (Pistol)",
+			"Gecko M2 (Pistol)",
+			"White Streak (Pistol)",			
+			"Baby Deagle (Pistol)",
+			"M13 9mm (Pistol)",
+			"Kahn .357 (Pistol)",
+			"Chimano Custom (Pistol)",
+			"Broomstick (Pistol)",
+			"Káng Arms Model 54 (Pistol)",
+			"Parabellum (Pistol)",
+			"5/7 AP (Pistol)",
+			"Castigo .44 (Pistol)",
+			"Contractor (Pistol)",
+			"Frenchman Model 87 (Pistol)",
+			"RUS-12 Angry Tiger (Pistol)",
+			"Chimano Compact (Pistol)",
+			"Crosskill Guard (Pistol)",
+			"LEO (Pistol)",
+			"STRYK 18c (Pistol)",
+			"Bernetti Auto (Pistol)",
+			"Czech 92 (Pistol)",
+			"Igor Automatik (Pistol)",
+			"HOLT (Pistol)",
+			"Peacemaker .45 (Pistol)",
+			"Matever .357 (Pistol)",
+			"Deagle (Pistol)",
+			
+			"Swedish K (SMG)",
+			"SpecOps (SMG)",
+			"Mark 10 (SMG)",
+			"CR 805B (SMG)",
+			"AK Gen 21 Tactical (SMG)",
+			"Jacket’s Piece (SMG)",	
+			"Compact-5 (SMG)",
+			"Chicago Typewriter (SMG)",
+			"Wasp-DS (SMG)",
+			"Miyaka 10 Special (SMG)",
+			"Cobra (SMG)",
+			"CMP (SMG)",
+			"Para (SMG)",
+			"Micro Uzi (SMG)",
+			"Signature (SMG)",
+			"Jackal (SMG)",
+			"MP40 (SMG)",
+			"Heather (SMG)",
+			"Krinkov (SMG)",
+			"Blaster 9mm (SMG)",
+			"Kobus 90 (SMG)",
+			"Kross Vertex (SMG)",
+			"Tatonka (SMG)",
+			"Patchett L2A1 (SMG)",
+			"Uzi (SMG)",
+			
+			"OVE9000 (Special)",
+			"Pistol Crossbow (Special)",
+			"Compact 40mm (Special)",
+			"HRL-7 (Special) ",
+			"China Puff 40mm (Special)",
+			"Commando 101 (Special)",
+			"MA-17 Flamethrower (Special)",
+			"Arbiter (Special)",
+			"Basilisk 3V (Special)",
+			
+			
+			"Locomotive 12G (Shotgun)",
+			"GSPS 12G (Shotgun)",
+			"Goliath 12G (Shotgun)",
+			"Grimm 12G (Shotgun)",
+			"Street Sweeper (Shotgun)",
+			"Argos III (Shotgun)",
+			"The Judge (Shotgun)",
+			"Claire 12G (Shotgun)",
+			
+			"Proghorn (Sniper)",
+			"Aran G2 (Sniper)",
+			"North Star (Sniper)"
+			];
+				
+			
+			const meleeWeapon = 
+			["350K Brass Knuckles", "50 Blessings Briefcase", "Alabama Razor", "Alpha Mauler", "Arkansas Toothpick", "Baseball Bat", "Bayonet Knife", "Bearded Axe", "Berger Combat Knife", "Bolt Cutters", "Buckler Shield", "Buzzer", "Carpenter’s Delight", "Chain Whip", "Classic Baton", "Cleaver Knife", "Clover's Shillelagh", "Compact Hatchet", "Croupier's Rake", "Ding Dong Breaching Tool", "Diving Knife", "Dragan's Cleaver", "El Verdugo", "Electrical Brass Knuckles", "Empty Palm Kata", "Fire Axe", "Fists", "Gold Fever", "Great Sword", "Hackaton", "Hockey Stick", "Hook", "Hotline 8000X", "Ice Pick", "Jackpot", "K.L.A.S. Shovel", "Kazaguruma", "Kento's Tanto", "Knuckle Daggers", "Krieger Blade", "Kunai Knife", "Leather Sap", "Lucille Baseball Bat", "Lumber Lite L2", "Machete", "Machete Knife", "Metal Detector", "Microphone", "Microphone Stand", "Money Bundle", "Morning Star", "Monkey Wrench", "Nova's Shank", "OVERKILL Boxing Gloves", "Okinawan Style Sai", "Pitchfork", "Poker", "Potato Masher", "Pounder", "Psycho Knife", "Push Daggers", "Rezkoye", "Rivertown Glen Bottle", "Scalper Tomahawk", "Scout Knife", "Selfie-stick", "Shawn's Shears", "Shepherd's Cane", "Shinsakuto Katana", "Spatula", "Specialist Knives", "Stainless Steel Syringe", "Survival Tomahawk", "Swagger Stick", "Switchblade", "Talons", "Telescopic Baton", "Tenderizer", "The Motherforker", "The Pen", "The Spear of Freedom", "Trautman Knife", "Trench Knife", "Tactical Flashlight", "Two Handed Great Ruler", "URSA Knife", "Ursa Tanto Knife", "Utility Knife", "Utility Machete", "Weapon Butt ", "Wing", "X-46 Knife", "You're Mine", "Comically Large Spoon", "Comically Large Spoon of Gold"];
+			
+			const perkDeck = ["Crew Chief", "Muscle", "Armorer", "Rogue", "Hitman", "Crook", "Burglar", "Inflitrator", "Sociopath", "Gambler", "Grinder", "Yakuza", "EX-President", "Maniac", "Anarchist", "Biker", "Kingpin", "Sicario", "Stoic", "Tag Team", "Hacker", "Leech", "Copycat"];
+			
+			const armor = ["Two-Piece Suit", "Ballistic Vest", "Lightweight Ballistic Vest", "Heavy Ballistic Vest", "Flak Jacket", "Combined Tactical Vest", "Improved Combined Tactical Vest"];
+			
+			const throwable = ["Concussion Grenade ", "Smoke Bomb ", "Stoic's Hip Flask ", "Pocket ECM ", "HEF Grenade ", "Ace of Spades ", "Incendiary Grenade ", "Matryoshka Grenade ", "Frag Grenade ", "Molotov Cocktail ", "Dynamite ", "Shuriken ", "Javelin ", "Throwing Axe ", "Throwing Knife ", "Kingpin Injector ", "Gas Dispenser ", "X1-ZAPper ", "Leech Ampule ", "Viper Grenade "];
+			
+			const equipment = ["Doctor Bag", "Body Bag Case", "Ammo Bag", "ECM Jammer", "Sentry Gun", "Suppressed Sentry Gun", "First Aid Kit", "Trip Mine", "Armor Bag", "JOAT (Random twice)"];
+			
+			const heist = [
+
+			"Art Gallery",
+			"Bank Heist: Cash",
+			"Bank Heist: Deposit",
+			"Bank Heist: Gold",
+			"Bank Heist: Random",
+			"Car Shop",
+			"Cook Off",
+			"Diamond Store",
+			"GO Bank",		
+			"Jewelry Store",
+			"Reservoir Dogs Heist",
+			"Shadow Raid",
+			"The Alesso Heist",			
+			"Transport: Crossroads",
+			"Transport: Downtown",
+			"Transport: Harbour",
+			"Transport: Park",
+			"Transport: Train Heist",
+			"Transport: Underpass",
+			
+			"Crude Awakening",
+			"Hostile Takeover",
+			
+			"Counterfeit",			
+			"Diamond Heist",			
+			"First World Bank",			
+			"Green Bridge",
+			"Heat Street",
+			"No Mercy",
+			"Panic Room",
+			"Slaughterhouse",			
+			"Undercover",			
+			
+			"Cursed Kill Room",
+			"Lab Rats",
+			"Prison Nightmare",
+			"Safe House Nightmare",
+			
+			"Lost in Transit",
+			"Midland Ranch",
+			
+			"Firestarter",			
+			"Rats",			
+			"Watchdogs", 			
+			
+			"Boiling Point",			
+			"Murky Station",			
+			
+			"Dragon Heist",
+			"The Ukrainian Prisoner",
+			
+			"Alaskan Deal",
+			"Beneath the Mountain",
+			"Birth of Sky",
+			"Border Crossing",
+			"Border Crystals",
+			"Breakfast in Tijuana",			
+			"Breakin' Feds",			
+			"Brooklyn Bank",
+			"Hell's Island",
+			"Henry's Rock",
+			"Shacklethorne Auction",
+			"The White House",
+
+			"Mountain Master",
+			
+			"Scarface Mansion",			
+			"The Bomb: Dockyard",
+			"The Bomb: Forest",			
+			
+			"Brooklyn 10-10",			
+			"The Yacht Heist",			
+
+			"Golden Grin Casino",
+			"Hotline Miami",
+			"Hoxton Breakout",
+			"Hoxton Revenge",
+			"The Big Bank",
+			"The Diamond",
+
+			"Big Oil",
+			"Election Day",
+			"Framing Frame",			
+			"The Biker Heist",				
+			
+			"Aftershock",
+			"Black Cat",
+			"Buluc's Mansion",	
+			"Four Stores",
+			"Goat Simulator",
+			"Mallcrasher",
+			"Meltdown",
+			"Nightclub",
+			"San Martin Bank",
+			"Santa's Workshop",
+			"Stealing Xmas",
+			"Ukrainian Job",
+			"White Xmas",
+			
+			"Crime Spree",
+			"Holdout",
+			"Safe House Raid"];
+
+
+			const difficulty = ["Normal", "Hard", "Very Hard", "Overkill", "Mayhem", "Death Wish", "Death Sentence"];
+			
+			const oneDown = ["Yes", "No"];
+			
+			const bowAmmo = ["Normal", "Explosive", "Poison"];
+			
+			const grenadeAmmo = ["Normal", "Incendiary", "X1-A Tactical ZAPper", "Viper", "Sting"];
+			
+			const shotgunAmmo = ["Flechette", "AP Slug", "HE Round", "000 Buckshot", "Dragon's Breath", "Tombstone Slug", "Normal"];
+
+			function randFromArray(arr)
+			{
+				let i = Math.floor(Math.random() * arr.length);
+				return arr[i];
+			}
+
+			function setElemText(id, text)
+			{
+				document.getElementById(id).innerHTML = text;
+			}
+
+			function writeRandom(id, arr)
+			{
+				setElemText(id, randFromArray(arr));
+			}
+
+			function writeRandomPrimary()
+			{
+				writeRandom("primaryWeaponSwitch", primaryWeapon);
+			}
+
+			function writeRandomSecondary()
+			{
+				writeRandom("secondaryWeaponSwitch", secondaryWeapon);
+			}
+
+			function writeRandomMelee()
+			{
+				writeRandom("meleeWeaponSwitch", meleeWeapon);
+			}
+
+			function writeRandomPerkDeck()
+			{
+				writeRandom("perkDeckSwitch", perkDeck);
+			}
+
+			function writeRandomArmor()
+			{
+				writeRandom("armorSwitch", armor);
+			}
+
+			function writeRandomThrowable()
+			{
+				writeRandom("throwableSwitch", throwable);
+			}
+
+			function writeRandomEquipment()
+			{
+				writeRandom("equipmentSwitch", equipment);
+			}
+
+			function writeRandomHeist()
+			{
+				writeRandom("heistSwitch", heist);
+			}
+
+			function writeRandomDifficulty()
+			{
+				writeRandom("difficultySwitch", difficulty);
+			}
+
+			function writeRandomOneDown()
+			{
+				writeRandom("oneDownSwitch", oneDown);
+			}
+
+			function writeRandomBowAmmo()
+			{
+				writeRandom("bowAmmoSwitch", bowAmmo);
+			}
+
+			function writeRandomGrenadeAmmo(){
+				writeRandom("grenadeAmmoSwitch", grenadeAmmo);
+			}
+
+			function writeRandomShotgunAmmo()
+			{
+				writeRandom("shotgunAmmoSwitch", shotgunAmmo);
+			}
+
+			function randomize()
+			{
+				writeRandomPrimary();
+				writeRandomSecondary();
+				writeRandomMelee();
+				writeRandomPerkDeck();
+				writeRandomArmor();
+				writeRandomThrowable();
+				writeRandomEquipment();
+				writeRandomHeist();
+				writeRandomDifficulty();
+				writeRandomOneDown();
+				writeRandomBowAmmo();
+				writeRandomGrenadeAmmo();
+				writeRandomShotgunAmmo();
+			}
+		</script>
+ 	</head>
+ 	<body>
+		<h1>Payday 2 Randomizer</h1>
+		<a href="https://www.reddit.com/r/paydaybuilds/comments/uugeo0/comment/i9fcxda/?utm_source=reddit&utm_medium=web2x&context=3" target="_blank">Basic Perk Builds</a></br>
+		</br>
+		<table>
+			<thead>
+				<!-- random button -->
+				<th><input type="button" onclick="randomize()" value="Spin the wheel of PAYDAY2" /></th>
+				<th colspan="2">Here's what you're doing</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td><!-- Intentionally left empty --></td>
+					<td>Primary Weapon:</td>
+					<td id="primaryWeaponSwitch"></td>
+				</tr>
+				<tr>
+					<td><!-- Intentionally left empty --></td>
+					<td>Secondary Weapon:</td>
+					<td id="secondaryWeaponSwitch"></td>
+				</tr>
+				<tr>
+					<td><!-- Intentionally left empty --></td>
+					<td>Melee Weapon:</td>
+					<td id="meleeWeaponSwitch"></td>
+				</tr>
+				<tr>
+					<td><!-- Intentionally left empty --></td>
+					<td>Perk Deck:</td>
+					<td id="perkDeckSwitch"></td>
+				</tr>
+				<tr>
+					<td><!-- Intentionally left empty --></td>
+					<td>Armor:</td>
+					<td id="armorSwitch"></td>
+				</tr>
+				<tr>
+					<td><input type="button" onclick="writeRandomThrowable()" value="Re-roll Throwable"></td>
+					<td>Throwable:</td>
+					<td id="throwableSwitch"></td>
+				</tr>
+				<tr>
+					<td><input type="button" onclick="writeRandomEquipment()" value="Re-roll Equipment"></td>
+					<td>Equipment:</td>
+					<td id="equipmentSwitch"></td>
+				</tr>
+				<tr>
+					<td><!-- Intentionally left empty --></td>
+					<td>Heist:</td>
+					<td id="heistSwitch"></td>
+				</tr>
+				<tr>
+					<td><!-- Intentionally left empty --></td>
+					<td>Difficulty:</td>
+					<td id="difficultySwitch"></td>
+				</tr>
+				<tr>
+					<td><!-- Intentionally left empty --></td>
+					<td>One Down?:</td>
+					<td id="oneDownSwitch"></td>
+				</tr>
+				<tr>
+					<td><input type="button" onclick="writeRandomBowAmmo()" value="Re-roll Bow Ammo Type"></td>
+					<td>Bow Ammo Type:</td>
+					<td id="bowAmmoSwitch"></td>
+				</tr>
+				<tr>
+					<td><input type="button" onclick="writeRandomGrenadeAmmo()" value="Re-roll Grenade Launcher Ammo Type"></td>
+					<td>Grenade Launcher Ammo Type:</td>
+					<td id="grenadeAmmoSwitch"></td>
+				</tr>
+				<tr>
+					<td><input type="button" onclick="writeRandomShotgunAmmo()" value="Re-roll Shotgun Ammo Type"></td>
+					<td>Shotgun Ammo Type:</td>
+					<td id="shotgunAmmoSwitch"></td>
+				</tr>
+			</tbody>
+		</table>
+		</br>
+		</table>
+ 	</body>
+</html>

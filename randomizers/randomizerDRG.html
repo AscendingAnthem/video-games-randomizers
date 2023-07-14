@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+	  html {background-color: black;}
+	  html {color: white;}
+	  a:link {color: green;}
+	  a:visited {color: green;}
+	  a:hover {color: hotpink;}
+	  a:active {color: blue;}
+	</style>
+  
+    <script type="text/javascript">
+      //init arrays	  
+	  var dwarf = [0, 1, 2, 3];
+	 
+	  //primary arrays
+	  var primaryGunner = ["Lead Storm Powered Minigun", "Thunderhead Heavy Autocannon", "Hurricane Guided Rocket System"];
+	  var primaryDriller = ["CRSPR Flamethrower", "Cryo Cannon", "Corrosive Sludge Pump"];
+	  var primaryEngineer = ["Warthog Auto 210", "Stubby Voltaic SMG", "LOK-1 Smart Rifle"];
+	  var primaryScout = ["Deepcore GK2", "M1000 Classic", "DRAK-25 Plasma Carbine"];
+	  
+	  //secondary arrays
+	  var secondaryGunner = ["Bulldog Heavy Revolver", "BRT7 Burst Fire Gun", "ArmsKore Coil Gun"];
+	  var secondaryDriller = ["Subata 120", "Experimental Plasma Charger", "Colette Wave Cooker"];
+	  var secondaryEngineer = ["Deepcore 40mm PGL", "Breach Cutter", "Shard Diffractor"];
+	  var secondaryScout = ["Jury-Rigged Boomstick", "Zhukov NUK17", "Nishanka Boltshark X-80"];
+	  
+	  //grenade arrays
+	  var grenadeGunner = ["Sticky Grenade", "Incendiary Grenade", "Cluster Grenade", "Tactical Leadburster"];
+	  var grenadeDriller = ["Impact Axe", "High Explosive Grenade", "Neurotoxin Grenade", "Springloaded Ripper"];
+	  var grenadeEngineer = ["L.U.R.E.", "Plasma Burster", "Proximity Mine", "Shredder Swarm"];
+	  var grenadeScout = ["Inhibitor-Field Generator", "Cryo Grenade", "Pheromone Canister", "Voltaic Stun Sweeper"];
+	
+      var primaryRand = "";
+      var secondaryRand = "";
+	  var grenadeRand = "";
+	    
+	  //0 = Gunner
+	  //1 = Driller
+	  //2 = Engineer
+	  //3 = Scout
+	  
+	  
+	function rerandom()
+	{
+	  	var dwarfRand = dwarf[Math.floor(Math.random() * dwarf.length)];	
+		
+		//check what dwarf and apply the correct arrays
+		switch(dwarfRand)
+		{
+		  case 0:
+		    //write down the dwarf class
+		    document.getElementById("dwarfSwitch").innerHTML = "Gunner";
+
+			//choose primary
+		    primaryRand = primaryGunner[Math.floor(Math.random() * primaryGunner.length)];
+			
+			//choose secondary
+		    secondaryRand = secondaryGunner[Math.floor(Math.random() * secondaryGunner.length)];
+			
+			//choose grenade
+			grenadeRand = grenadeGunner[Math.floor(Math.random() * grenadeGunner.length)];
+			
+		    break;
+			
+	      case 1:
+		  	document.getElementById("dwarfSwitch").innerHTML = "Driller";	
+		    primaryRand = primaryDriller[Math.floor(Math.random() * primaryDriller.length)];		
+		    secondaryRand = secondaryDriller[Math.floor(Math.random() * secondaryDriller.length)];
+			grenadeRand = grenadeDriller[Math.floor(Math.random() * grenadeDriller.length)];
+			
+		    break;
+			
+	      case 2:
+		  	document.getElementById("dwarfSwitch").innerHTML = "Engineer";			
+			primaryRand = primaryEngineer[Math.floor(Math.random() * primaryEngineer.length)];	
+		    secondaryRand = secondaryEngineer[Math.floor(Math.random() * secondaryEngineer.length)];
+			grenadeRand = grenadeEngineer[Math.floor(Math.random() * grenadeEngineer.length)];
+			
+		    break;
+			
+		  case 3:
+		  	document.getElementById("dwarfSwitch").innerHTML = "Scout";	
+			primaryRand = primaryScout[Math.floor(Math.random() * primaryScout.length)];			
+		    secondaryRand = secondaryScout[Math.floor(Math.random() * secondaryScout.length)];
+			grenadeRand = grenadeScout[Math.floor(Math.random() * grenadeScout.length)];
+			
+		    break;
+		}
+
+		document.getElementById("primarySwitch").innerHTML = primaryRand;
+	    document.getElementById("secondarySwitch").innerHTML = secondaryRand;
+		document.getElementById("grenadeSwitch").innerHTML = grenadeRand;
+		
+	  
+	}
+    </script>
+	
+    <meta charset="UTF-8">
+    <title>Deep Rock Galactic Randomizer</title>
+	
+  </head>
+  <body>
+    <h1>Deep Rock Galactic Randomizer</h1>
+	
+	<!-- random button -->
+    <input type="button" onclick="rerandom()" value="Randomize!" /></br>
+    
+	<h1>Dwarf: <span id="dwarfSwitch"><script>document.write(dwarfRand)</script></span></h1>
+
+	<p><b><u>Primary:</u> </b><span id="primarySwitch"><script>document.write(primaryRand)</script></span></p>
+	<p><b><u>Secondary:</u> </b><span id="secondarySwitch"><script>document.write(secondaryRand)</script></span></p>
+	<p><b><u>Grenade:</u> </b><span id="grenadeSwitch"><script>document.write(grenadeRand)</script></span></p>	
+  </body>
+</html>
