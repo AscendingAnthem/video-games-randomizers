@@ -70,9 +70,12 @@
 	const careerHunter = ["Witch Hunter Captain", "Bounty Hunter", "Zealot", "Warrior Priest of Sigmar"];
 	
 	//wizard arrays
-	const meleeWizard = ["Sword", "Mace", "Fire Sword", "Dagger", "Crowbill", "Flaming Flail"];
+	const meleeWizard = ["Sword", "Mace", "Fire Sword", "Dagger", "Crowbill", "Flaming Flail", "Ensorcelled Reaper"];
+	
 	const rangedWizard = ["Fireball Staff", "Flamestorm Staff", "Bolt Staff", "Beam Staff", "Conflagration Staff", "Coruscation Staff"];
-	const careerWizard = ["Battle Wizard", "Pyromancer", "Unchained"];
+	const rangedWizardNecro = ["Fireball Staff", "Flamestorm Staff", "Bolt Staff", "Beam Staff", "Conflagration Staff", "Soulstealer Staff"];
+	
+	const careerWizard = ["Battle Wizard", "Pyromancer", "Unchained", "Necromancer"];
 	
 	
 	//gamemodes
@@ -365,7 +368,17 @@
 		
 	function writeRandomWizardRanged()
 		{
-			writeRandom("rangedSwitch", rangedWizard);
+			careerTest = document.getElementById("careerSwitch").innerHTML;
+			
+			if (careerTest == "Battle Wizard" || "Pyromancer" || "Unchained") 
+			{
+				writeRandom("rangedSwitch", rangedWizard);
+			}
+				
+			if (careerTest == "Necromancer") 
+			{
+				writeRandom("rangedSwitch", rangedWizardNecro);
+			}
 		}
 	
 	function findHeroCareer()
