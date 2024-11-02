@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+	  html {background-color: black;}
+	  html {color: white;}
+	  a:link {color: green;}
+	  a:visited {color: green;}
+	  a:hover {color: hotpink;}
+	  a:active {color: blue;}
+	</style>
+  
+    <script type="text/javascript">
+      //init variables	  
+	  var marine = [0, 1, 2, 3, 4, 5]; 
+	  //0 = Tactical
+	  //1 = Assault
+	  //2 = Vanguard
+	  //3 = Bulwark
+	  //4 = Sniper
+	  //5 = Heavy
+	  
+	  var primaryRand = "";
+      var secondaryRand = "";  
+	  var meleeRand = "";
+	  
+	  //primary arrays
+	  var primaryTactical = ["Auto Bolt Rifle", "Bolt Rifle", "Heavy Bolt Rifle", "Stalker Bolt Rifle", "Bolt Carbine", "Plasma Incinerator", "Melta Rifle"];
+	  var primaryAssault = [""];
+	  var primaryVanguard = ["Instigator Bolt Rifle", "Occulus Bolt Rifle", "Melta Rifle"];
+	  var primaryBulwark = [""];
+	  var primarySniper = ["Stalker Bolt Rifle", "Bolt Sniper Rifle", "Bolt Carbine", "Las Fusil"];
+	  var primaryHeavy = ["Heavy Bolter", "Heavy Plasma Incinerator", "Multi-Melta"];
+	 
+	  //secondary arrays
+	  var secondaryTactical = ["Bolt Pistol"];
+	  var secondaryAssault = ["Bolt Pistol", "Heavy Bolt Pistol"];
+	  var secondaryVanguard = ["Bolt Pistol"];
+	  var secondaryBulwark = ["Bolt Pistol", "Plasma Pistol"];
+	  var secondarySniper = ["Bolt Pistol"];
+	  var secondaryHeavy = ["Bolt Pistol", "Plasma Pistol"];
+	  
+	  //melee arrays
+	  var meleeTactical = ["Chainsword"];
+	  var meleeAssault = ["Chainsword", "Thunder Hammer", "Power Fist"];
+	  var meleeVanguard = ["Combat Knife", "Chainsword"];
+	  var meleeBulwark = ["Chainsword", "Power Fist", "Power Sword"];
+	  var meleeSniper = ["Combat Knife"];
+	  var meleeHeavy = [""];
+	  
+	  var map = ["Inferno", "Decapitation", "Vox Liberatis", "Reliquary", "Fall of Atreus", "Ballistic Engine", "Termination"];
+	  
+	  var difficulty = ["Minimal", "Average", "Substantial", "Ruthless", "Lethal"];
+	  
+	function rerandom()
+	{
+	  	var marineRand = marine[Math.floor(Math.random() * marine.length)];	
+		var mapRand = map[Math.floor(Math.random() * map.length)];
+		var difficultyRand = difficulty[Math.floor(Math.random() * difficulty.length)];
+		
+		var perk = [];
+		for (let k = 0; k < 9; k++) 
+			{
+				perk.push(Math.floor(Math.random() * 3) + 1);
+			} 
+			document.getElementById("perkSwitch").innerHTML = perk;
+		
+		//check what marine and apply the correct arrays
+		switch(marineRand)
+		{
+		  case 0:
+		    //write down the marine
+		    document.getElementById("marineSwitch").innerHTML = "Tactical";
+
+			//choose primary
+		    primaryRand = primaryTactical[Math.floor(Math.random() * primaryTactical.length)];
+			
+			//choose secondary
+		    secondaryRand = secondaryTactical[Math.floor(Math.random() * secondaryTactical.length)];
+			
+			//choose melee
+			meleeRand = meleeTactical[Math.floor(Math.random() * meleeTactical.length)];
+			
+		    break;
+			
+	      case 1:
+		  	document.getElementById("marineSwitch").innerHTML = "Assault";	
+		    primaryRand = primaryAssault[Math.floor(Math.random() * primaryAssault.length)];
+		    secondaryRand = secondaryAssault[Math.floor(Math.random() * secondaryAssault.length)];
+			meleeRand = meleeAssault[Math.floor(Math.random() * meleeAssault.length)];
+			
+		    break;
+			
+	      case 2:
+		  	document.getElementById("marineSwitch").innerHTML = "Vanguard";			
+		    primaryRand = primaryVanguard[Math.floor(Math.random() * primaryVanguard.length)];
+		    secondaryRand = secondaryVanguard[Math.floor(Math.random() * secondaryVanguard.length)];
+			meleeRand = meleeVanguard[Math.floor(Math.random() * meleeVanguard.length)];
+			
+		    break;
+			
+		  case 3:
+		  	document.getElementById("marineSwitch").innerHTML = "Bulwark";	
+		    primaryRand = primaryBulwark[Math.floor(Math.random() * primaryBulwark.length)];
+		    secondaryRand = secondaryBulwark[Math.floor(Math.random() * secondaryBulwark.length)];
+			meleeRand = meleeBulwark[Math.floor(Math.random() * meleeBulwark.length)];
+			
+		    break;
+			
+		  case 4:		  
+		  	document.getElementById("marineSwitch").innerHTML = "Sniper";	
+		    primaryRand = primarySniper[Math.floor(Math.random() * primarySniper.length)];
+		    secondaryRand = secondarySniper[Math.floor(Math.random() * secondarySniper.length)];
+			meleeRand = meleeSniper[Math.floor(Math.random() * meleeSniper.length)];
+			
+		    break;
+			
+		  case 5:
+		    document.getElementById("marineSwitch").innerHTML = "Heavy";	
+		    primaryRand = primaryHeavy[Math.floor(Math.random() * primaryHeavy.length)];
+		    secondaryRand = secondaryHeavy[Math.floor(Math.random() * secondaryHeavy.length)];
+			meleeRand = meleeHeavy[Math.floor(Math.random() * meleeHeavy.length)];
+		  
+		  break;
+		}
+		
+		document.getElementById("primarySwitch").innerHTML = primaryRand;
+	    document.getElementById("secondarySwitch").innerHTML = secondaryRand;
+		document.getElementById("meleeSwitch").innerHTML = meleeRand;
+		document.getElementById("mapSwitch").innerHTML = mapRand;
+		document.getElementById("difficultySwitch").innerHTML = difficultyRand;
+	}
+    </script>
+
+    <meta charset="UTF-8">
+    <title>Space Marine 2 Randomizer</title>
+	
+  </head>
+  <body>
+    <h1>Space Marine 2 Randomizer</h1>
+	
+	<!-- random button -->
+    <input type="button" onclick="rerandom()" value="FOR THE EMPEROR!" />
+    
+	<h1>Marine: <span id="marineSwitch"><script>document.write(marineRand)</script></span></h1>
+
+	<p><b><u>Primary:</u> </b><span id="primarySwitch"><script>document.write(primaryRand)</script></span></p>
+	<p><b><u>Secondary:</u> </b><span id="secondarySwitch"><script>document.write(secondaryRand)</script></span></p>
+    <p><b><u>Melee:</u> </b><span id="meleeSwitch"><script>document.write(meleeRand)</script></span></p>
+	<p><b><u>Map:</u> </b><span id="mapSwitch"><script>document.write(mapRand)</script></span></p>
+	<p><b><u>Difficulty:</u> </b><span id="difficultySwitch"><script>document.write(difficultyRand)</script></span></p>
+    <p><b><u>Perks:</u> </b><span id="perkSwitch"><script>document.write(perkRand)</script></span></p>
+	
+  </body>
+</html>
